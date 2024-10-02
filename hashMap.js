@@ -1,5 +1,6 @@
 class Node {
-  constructor(value = null, nextNode = null) {
+  constructor(key = null, value = null, nextNode = null) {
+    this.key = key;
     this.value = value;
     this.nextNode = nextNode;
   }
@@ -30,11 +31,21 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
-    if (this.buckets[index] === null) {
-      let node = new Node({ key, value });
+    let bucketsIndex = this.get(key);
+
+    if (!bucketsIndex) {
+      let node = new Node(key, value);
       this.buckets[index] = node;
       this.occupied++;
-      return
+      return;
+    } else {
+      while (bucketsIndex !== null) {
+        if (bucketsIndex.key === key) {
+          bucketsIndex.value = value;
+          return
+        }
+        bucketsIndex = bucketsIndex.nextNode;
+      }
     }
 
     let tmp = this.buckets[index];

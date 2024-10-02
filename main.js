@@ -16,8 +16,9 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
+
+test.set("apple", "green")
 console.log(test.buckets);
-console.log(test.occupied);
 
 // console.log(test.get("dog"))
 // console.log(test.has("test"))
