@@ -21,4 +21,14 @@ test.set("apple", "white")
 
 test.set('moon', 'silver')
 
+
+
+test.set('carro', 'black')
+test.set('mota cream', 'white')
+test.set('asdfg', 'blue')
+test.set('qwerty', 'pink')
+test.set('zxcvb', 'golden')
+test.set('bhnjiok', 'pink')
+test.set('qwsdaxzc', 'golden')
+
 console.log(test.buckets);

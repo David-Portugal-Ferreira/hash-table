@@ -56,7 +56,7 @@ class HashMap {
     while (tmp.nextNode !== null) {
       tmp = tmp.nextNode;
     }
-    tmp.nextNode = new Node({ key, value });
+    tmp.nextNode = new Node(key, value);
     this.occupied++;
   }
 
@@ -102,10 +102,17 @@ class HashMap {
     this.buckets = Array(this.capacity).fill(null);
 
     oldBucket.forEach((bucket, index) => {
+        // console.log(bucket)
         if(bucket === null) {
             this.buckets[index] = null;
+            return
         } else {
             this.set(bucket.key, bucket.value);
+        }
+
+        while (bucket.nextNode !== null) {
+            this.set(bucket.nextNode.key, bucket.nextNode.value);
+            bucket = bucket.nextNode;
         }
     })
   }
