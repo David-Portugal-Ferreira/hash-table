@@ -33,13 +33,16 @@ class HashMap {
     if (this.buckets[index] === null) {
       let node = new Node({ key, value });
       this.buckets[index] = node;
-    } else {
-      let tmp = this.buckets[index];
-      while (tmp.nextNode !== null) {
-        tmp = tmp.nextNode;
-      }
-      tmp.nextNode = new Node({ key, value });
+      this.occupied++;
+      return
     }
+
+    let tmp = this.buckets[index];
+    while (tmp.nextNode !== null) {
+      tmp = tmp.nextNode;
+    }
+    tmp.nextNode = new Node({ key, value });
+    this.occupied++;
   }
 
   get(key) {
@@ -72,9 +75,5 @@ class HashMap {
 
   entries() {}
 }
-
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bound");
-// }
 
 module.exports = HashMap;
