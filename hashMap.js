@@ -26,9 +26,9 @@ class HashMap {
   }
 
   set(key, value) {
-    // if(this.occupied / this.capacity >= this.loadFactor) {
-    //     this.resize();
-    // }
+    if(this.occupied / this.capacity >= this.loadFactor) {
+        this.resize();
+    }
 
     let index = this.hash(key);
     if (index < 0 || index >= this.buckets.length) {
@@ -94,12 +94,20 @@ class HashMap {
 
 
 
-  
+
   resize() {
-    this.capacity = this.buckets.length * 2;
+    this.capacity *= 2;
     
     let oldBucket = this.buckets;
     this.buckets = Array(this.capacity).fill(null);
+
+    oldBucket.forEach((bucket, index) => {
+        if(bucket === null) {
+            this.buckets[index] = null;
+        } else {
+            this.set(bucket.key, bucket.value);
+        }
+    })
   }
 }
 
