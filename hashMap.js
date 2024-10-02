@@ -26,6 +26,10 @@ class HashMap {
   }
 
   set(key, value) {
+    // if(this.occupied / this.capacity >= this.loadFactor) {
+    //     this.resize();
+    // }
+
     let index = this.hash(key);
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
@@ -85,6 +89,18 @@ class HashMap {
   values() {}
 
   entries() {}
+
+
+
+
+
+  
+  resize() {
+    this.capacity = this.buckets.length * 2;
+    
+    let oldBucket = this.buckets;
+    this.buckets = Array(this.capacity).fill(null);
+  }
 }
 
 module.exports = HashMap;

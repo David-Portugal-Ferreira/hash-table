@@ -1,6 +1,5 @@
 const HashMap = require("./hashMap");
 
-
 const test = new HashMap();
 
 test.set('apple', 'red')
@@ -16,9 +15,10 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-
 test.set("apple", "green")
-console.log(test.buckets);
+test.set("apple", "white")
+// console.log(test.buckets);
 
-// console.log(test.get("dog"))
-// console.log(test.has("test"))
+test.set('moon', 'silver')
+
+console.log(test.buckets);
