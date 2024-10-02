@@ -51,7 +51,14 @@ class HashMap {
     return this.buckets[index] || null;
   }
 
-  has(key) {}
+  has(key) {
+    let index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bound");
+    }
+
+    return this.buckets[index] === null ? false : true;
+  }
 
   remove(key) {}
 
