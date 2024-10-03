@@ -19,3 +19,5 @@ test.set("lion", "golden");
 console.log(test.remove("hat"))
 console.log(test.buckets)
 console.log(test.length())
+console.log(test.clear())
+console.log(test.buckets)

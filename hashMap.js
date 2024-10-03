@@ -125,7 +125,9 @@ class HashMap {
     return this.occupied
   }
 
-  clear() {}
+  clear() {
+    this.buckets = Array(16).fill(null);
+  }
 
   keys() {}
 
