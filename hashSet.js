@@ -62,10 +62,17 @@ class HashSet {
         return;
     }
 
-    let tmp = this.buckets[index];
-    let prev = null;
+    let tmp = this.buckets[index].nextNode;
+    let prev = this.buckets[index];
 
-
+    while (tmp !== null) {
+        if (tmp.key === key) {
+            prev.nextNode = tmp.nextNode || null;
+            return;
+        }
+        prev = tmp;
+        tmp = tmp.nextNode;
+    }  
   }
 }
 

@@ -54,6 +54,6 @@ test.set("jacket");
 test.set("kite");
 test.set("lion");
 // console.log(test.buckets)
-test.remove("grape")
+test.remove("lion")
 console.log(test.buckets)
 // console.log(test.has("carro"))
