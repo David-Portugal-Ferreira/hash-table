@@ -29,6 +29,7 @@ class HashSet {
 
     if(this.buckets[index] === null) {
         this.buckets[index] = new Node(key);
+        this.occupied++;
         return;
     } else {
         let tmp = this.buckets[index];
@@ -37,10 +38,8 @@ class HashSet {
             tmp = tmp.nextNode;
         }
         tmp.nextNode = new Node(key);
-
+        this.occupied++;
     }
-
-    
   }
 
   has(key) {
@@ -73,6 +72,10 @@ class HashSet {
         prev = tmp;
         tmp = tmp.nextNode;
     }  
+  }
+
+  length() {
+    return this.occupied;
   }
 }
 
