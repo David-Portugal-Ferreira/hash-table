@@ -88,7 +88,19 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
-    return this.buckets[index] === null ? false : true;
+    // return this.buckets[index] === null ? false : true;
+
+    if (this.buckets[index]) {
+      let tmp = this.buckets[index];
+
+      while (tmp !== null) {
+        if(tmp.key = key) return true;
+        tmp = tmp.nextNode;
+      }
+      if(tmp === null) return false;
+    } else {
+      return false
+    }
   }
 
   remove(key) {
