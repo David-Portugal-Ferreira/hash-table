@@ -57,7 +57,16 @@ class HashMap {
 
     let tmp = this.buckets[index] || null
 
-    console.log(tmp)
+    while (tmp !== null) {
+        if(tmp.key === key) {
+            return tmp.value
+        }
+        tmp = tmp.nextNode;
+    }
+
+    if(tmp === null) {
+        return "No such key in the hashmap"
+    }
   }
 
   has(key) {
