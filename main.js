@@ -41,5 +41,19 @@ console.log(test.buckets);
 
 let test = new HashSet();
 
-test.set("carro");
+test.set("apple");
+test.set("banana");
+test.set("carrot");
+test.set("dog");
+test.set("elephant");
+test.set("frog");
+test.set("grape");
+test.set("hat");
+test.set("ice cream");
+test.set("jacket");
+test.set("kite");
+test.set("lion");
+// console.log(test.buckets)
+test.remove("grape")
 console.log(test.buckets)
+// console.log(test.has("carro"))

@@ -30,9 +30,42 @@ class HashSet {
     if(this.buckets[index] === null) {
         this.buckets[index] = new Node(key);
         return;
+    } else {
+        let tmp = this.buckets[index];
+
+        while (tmp.nextNode !== null) {
+            tmp = tmp.nextNode;
+        }
+        tmp.nextNode = new Node(key);
+
     }
 
     
+  }
+
+  has(key) {
+    let index = this.hash(key);
+
+    return this.buckets[index] ? true : false;
+  }
+
+  remove(key) {
+    let hasKey = this.has(key);
+    if(!hasKey) {
+        console.log("No such key inside the hashSet");
+        return
+    }
+
+    let index = this.hash(key)
+    if(this.buckets[index].key === key) {
+        this.buckets[index] = this.buckets[index].nextNode || null;
+        return;
+    }
+
+    let tmp = this.buckets[index];
+    let prev = null;
+
+
   }
 }
 
