@@ -78,7 +78,34 @@ class HashMap {
     return this.buckets[index] === null ? false : true;
   }
 
-  remove(key) {}
+  remove(key) {
+    let index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bound");
+    }
+
+    let hasKey = this.has(key);
+    if (!hasKey) {
+        return "The key to be removed, does not exists";
+    }
+
+    if(this.buckets[index].nextNode === null) {
+        this.buckets[index] = null;
+        return
+    }
+    
+    let tmp = this.buckets[index].nextNode;
+    let prevNode = this.buckets[index];
+    while(tmp !== null) {
+        if(tmp.key === key) {
+            prevNode.nextNode = tmp.nextNode || null;
+            return
+        }
+        prevNode = tmp;
+        tmp = tmp.nextNode;
+    }
+
+  }
 
   length() {}
 
