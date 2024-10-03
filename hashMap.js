@@ -26,10 +26,6 @@ class HashMap {
   }
 
   set(key, value) {
-    if (this.occupied / this.capacity >= this.loadFactor) {
-      this.resize();
-    }
-
     let index = this.hash(key);
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
@@ -46,6 +42,10 @@ class HashMap {
         }
         node = node.nextNode;
       }
+    }
+    
+    if (this.occupied / this.capacity >= this.loadFactor) {
+      this.resize();
     }
 
     if (this.buckets[index] === null) {
@@ -159,7 +159,20 @@ class HashMap {
     return allValues;
   }
 
-  entries() {}
+  entries() {
+    let allEntries = [];
+
+    this.buckets.forEach((bucket) => {
+      if (bucket !== null) {
+        while(bucket !== null) {
+            allEntries.push([bucket.key, bucket.value]);
+            bucket = bucket.nextNode;
+        }
+      }
+    });
+
+    return allEntries;
+  }
 
   resize() {
     this.capacity *= 2;
@@ -168,7 +181,6 @@ class HashMap {
     this.buckets = Array(this.capacity).fill(null);
 
     oldBucket.forEach((bucket, index) => {
-      // console.log(bucket)
       if (bucket === null) {
         this.buckets[index] = null;
         return;
