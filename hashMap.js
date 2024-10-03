@@ -35,21 +35,26 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
-    let bucketsIndex = this.get(key);
+    // let bucketsIndex = this.get(key);
 
-    if (!bucketsIndex) {
-      let node = new Node(key, value);
-      this.buckets[index] = node;
-      this.occupied++;
-      return;
-    } else {
-      while (bucketsIndex !== null) {
-        if (bucketsIndex.key === key) {
-          bucketsIndex.value = value;
-          return
-        }
-        bucketsIndex = bucketsIndex.nextNode;
-      }
+    // if (!bucketsIndex) {
+    //   let node = new Node(key, value);
+    //   this.buckets[index] = node;
+    //   this.occupied++;
+    //   return;
+    // } else {
+    //   while (bucketsIndex !== null) {
+    //     if (bucketsIndex.key === key) {
+    //       bucketsIndex.value = value;
+    //       return
+    //     }
+    //     bucketsIndex = bucketsIndex.nextNode;
+    //   }
+    // }
+
+    if (this.buckets[index] === null) {
+        this.buckets[index] = new Node(key, value);
+        return
     }
 
     let tmp = this.buckets[index];
@@ -65,8 +70,11 @@ class HashMap {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
     }
+    // return this.buckets[index] || null;
 
-    return this.buckets[index] || null;
+    let tmp = this.buckets[index] || null
+
+    console.log(tmp)
   }
 
   has(key) {
