@@ -1,5 +1,6 @@
 const HashMap = require("./hashMap");
-
+const HashSet = require("./hashSet")
+/* 
 const test = new HashMap();
 
 test.set("apple", "red");
@@ -36,3 +37,9 @@ console.log(test.values())
 console.log(test.entries())
 test.clear();
 console.log(test.buckets);
+ */
+
+let test = new HashSet();
+
+test.set("carro");
+console.log(test.buckets)
