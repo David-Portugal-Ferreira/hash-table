@@ -1,58 +1,58 @@
 const HashMap = require("./hashMap");
 const HashSet = require("./hashSet")
 
-/* const test = new HashMap();
+const testMap = new HashMap();
 
-test.set("apple", "red");
-test.set("banana", "yellow");
-test.set("carrot", "orange");
+testMap.set("apple", "red");
+testMap.set("banana", "yellow");
+testMap.set("carrot", "orange");
 
-test.set("dog", "red");
-test.set("god", "yellow");
-test.set("odg", "orange");
+testMap.set("dog", "red");
+testMap.set("god", "yellow");
+testMap.set("odg", "orange");
 
-test.set("dog", "brown");
-test.set("elephant", "gray");
-test.set("frog", "green");
-test.set("grape", "purple");
-test.set("hat", "black");
-test.set("ice cream", "white");
-test.set("jacket", "blue");
-test.set("kite", "pink");
-test.set("lion", "golden");
-test.set('moon', 'silver')
-console.log(test.buckets)
+testMap.set("dog", "brown");
+testMap.set("elephant", "gray");
+testMap.set("frog", "green");
+testMap.set("grape", "purple");
+testMap.set("hat", "black");
+testMap.set("ice cream", "white");
+testMap.set("jacket", "blue");
+testMap.set("kite", "pink");
+testMap.set("lion", "golden");
+testMap.set('moon', 'silver')
+console.log(testMap.buckets)
 
-console.log(test.get("lion"))
-console.log(test.has("lion"))
-console.log(test.remove("lion"))
-console.log(test.buckets)
-console.log(test.length())
-console.log(test.keys())
-console.log(test.values())
-console.log(test.entries())
-test.clear();
-console.log(test.buckets);
- */
+console.log(testMap.get("lion"))
+console.log(testMap.has("lion"))
+console.log(testMap.remove("lion"))
+console.log(testMap.buckets)
+console.log(testMap.length())
+console.log(testMap.keys())
+console.log(testMap.values())
+console.log(testMap.entries())
+testMap.clear();
+console.log(testMap.buckets);
 
-let test = new HashSet();
 
-test.set("apple");
-test.set("banana");
-test.set("carrot");
-test.set("dog");
-test.set("elephant");
-test.set("frog");
-test.set("grape");
-test.set("hat");
-test.set("ice cream");
-test.set("jacket");
-test.set("kite");
-test.set("lion");
-// test.set("god");
-// console.log(test.keys())
-console.log(test.length())
-// test.set("moon");
-test.remove("lion")
-console.log(test.buckets)
-console.log(test.length())
+let testSet = new HashSet();
+
+testSet.set("apple");
+testSet.set("banana");
+testSet.set("carrot");
+testSet.set("dog");
+testSet.set("elephant");
+testSet.set("frog");
+testSet.set("grape");
+testSet.set("hat");
+testSet.set("ice cream");
+testSet.set("jacket");
+testSet.set("kite");
+testSet.set("lion");
+testSet.set("god");
+console.log(testSet.keys())
+console.log(testSet.length())
+testSet.set("moon");
+testSet.remove("lion")
+console.log(testSet.buckets)
+console.log(testSet.length())

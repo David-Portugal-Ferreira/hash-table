@@ -114,23 +114,6 @@ class HashMap {
       prev = tmp;
       tmp = tmp.nextNode;
     }
-
-    /* if (this.buckets[index].nextNode === null) {
-      this.buckets[index] = null;
-      this.occupied--;
-      return;
-    }
-    let tmp = this.buckets[index].nextNode;
-    let prevNode = this.buckets[index];
-    while (tmp !== null) {
-      if (tmp.key === key) {
-        prevNode.nextNode = tmp.nextNode || null;
-        this.occupied--;
-        return;
-      }
-      prevNode = tmp;
-      tmp = tmp.nextNode;
-    } */
   }
 
   length() {
