@@ -31,19 +31,6 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
-    let hasKey = this.has(key);
-    if (hasKey) {
-      let node = this.buckets[index];
-
-      while (node !== null) {
-        if (node.key === key) {
-          node.value = value;
-          return;
-        }
-        node = node.nextNode;
-      }
-    }
-    
     if (this.occupied / this.capacity >= this.loadFactor) {
       this.resize();
     }
@@ -55,11 +42,18 @@ class HashMap {
     }
 
     let tmp = this.buckets[index];
-    while (tmp.nextNode !== null) {
+    while (tmp !== null) {
+      if(tmp.key === key) {
+        tmp.value = value;
+        return;
+      }
+      if(tmp.nextNode === null) {
+        tmp.nextNode = new Node(key, value);
+        this.occupied++;
+        return
+      }
       tmp = tmp.nextNode;
     }
-    tmp.nextNode = new Node(key, value);
-    this.occupied++;
   }
 
   get(key) {
@@ -94,7 +88,7 @@ class HashMap {
       let tmp = this.buckets[index];
 
       while (tmp !== null) {
-        if(tmp.key = key) return true;
+        if(tmp.key === key) return true;
         tmp = tmp.nextNode;
       }
       if(tmp === null) return false;
@@ -109,17 +103,23 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
-    let hasKey = this.has(key);
-    if (!hasKey) {
-      return "The key to be removed, does not exists";
+    let tmp = this.buckets[index];
+    let prev = null;
+    while(tmp !== null) {
+      if(prev === null && tmp.key === key) {
+          this.buckets[index] = tmp.nextNode;
+      } else if (tmp.key === key) {
+        prev.nextNode = tmp.nextNode || null;
+      }
+      prev = tmp;
+      tmp = tmp.nextNode;
     }
 
-    if (this.buckets[index].nextNode === null) {
+    /* if (this.buckets[index].nextNode === null) {
       this.buckets[index] = null;
-      this.occupied++;
+      this.occupied--;
       return;
     }
-
     let tmp = this.buckets[index].nextNode;
     let prevNode = this.buckets[index];
     while (tmp !== null) {
@@ -130,7 +130,7 @@ class HashMap {
       }
       prevNode = tmp;
       tmp = tmp.nextNode;
-    }
+    } */
   }
 
   length() {
@@ -191,6 +191,7 @@ class HashMap {
 
     let oldBucket = this.buckets;
     this.buckets = Array(this.capacity).fill(null);
+    this.occupied = 0;
 
     oldBucket.forEach((bucket, index) => {
       if (bucket === null) {
