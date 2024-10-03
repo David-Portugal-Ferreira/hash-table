@@ -25,6 +25,10 @@ class HashSet {
   }
 
   set(key) {
+    if(this.occupied / this.capacity >= this.loadFactor) {
+        this.resize();
+    }
+
     let index = this.hash(key);
 
     if(this.buckets[index] === null) {
@@ -81,7 +85,32 @@ class HashSet {
   clear() {
     this.buckets = Array(16).fill(null);
   }
-}
 
+  keys() {
+    let allKeys = [];
+
+    this.buckets.forEach((bucket) => {
+        while(bucket !== null) {
+            allKeys.push(bucket.key);
+            bucket = bucket.nextNode;
+        }
+    })
+    return allKeys;
+  }
+
+  resize() {
+    this.capacity *= 2;
+
+    let oldBucket = this.buckets;
+    this.buckets = Array(this.capacity).fill(null);
+
+    oldBucket.forEach((bucket, index) => {
+        while (bucket !== null) {
+            this.set(bucket.key);
+            bucket = bucket.nextNode;
+        }
+    })
+  }
+}
 
 module.exports = HashSet

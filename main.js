@@ -53,6 +53,6 @@ test.set("ice cream");
 test.set("jacket");
 test.set("kite");
 test.set("lion");
-// console.log(test.buckets)
-test.remove("lion")
-console.log(test.length())
+console.log(test.keys())
+test.set("moon");
+console.log(test.buckets)
