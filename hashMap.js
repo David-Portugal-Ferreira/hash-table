@@ -42,7 +42,7 @@ class HashMap {
       while (node !== null) {
         if (node.key === key) {
           node.value = value;
-          return
+          return;
         }
         node = node.nextNode;
       }
@@ -50,7 +50,7 @@ class HashMap {
 
     if (this.buckets[index] === null) {
       this.buckets[index] = new Node(key, value);
-      this.occupied++
+      this.occupied++;
       return;
     }
 
@@ -122,16 +122,42 @@ class HashMap {
   }
 
   length() {
-    return this.occupied
+    return this.occupied;
   }
 
   clear() {
     this.buckets = Array(16).fill(null);
   }
 
-  keys() {}
+  keys() {
+    let allKeys = [];
 
-  values() {}
+    this.buckets.forEach((bucket) => {
+      if (bucket !== null) {
+        while(bucket !== null) {
+            allKeys.push(bucket.key);
+            bucket = bucket.nextNode;
+        }
+      }
+    });
+
+    return allKeys;
+  }
+
+  values() {
+    let allValues = [];
+
+    this.buckets.forEach((bucket) => {
+      if (bucket !== null) {
+        while(bucket !== null) {
+            allValues.push(bucket.value);
+            bucket = bucket.nextNode;
+        }
+      }
+    });
+
+    return allValues;
+  }
 
   entries() {}
 

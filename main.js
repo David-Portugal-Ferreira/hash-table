@@ -16,8 +16,8 @@ test.set("kite", "pink");
 test.set("lion", "golden");
 // console.log(test.buckets)
 // console.log(test.get("lion"))
-console.log(test.remove("hat"))
-console.log(test.buckets)
-console.log(test.length())
-console.log(test.clear())
-console.log(test.buckets)
+// console.log(test.remove("hat"))
+// console.log(test.buckets)
+// console.log(test.length())
+console.log(test.keys())
+console.log(test.values())
