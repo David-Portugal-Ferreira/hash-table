@@ -50,6 +50,7 @@ class HashMap {
 
     if (this.buckets[index] === null) {
       this.buckets[index] = new Node(key, value);
+      this.occupied++
       return;
     }
 
@@ -103,6 +104,7 @@ class HashMap {
 
     if (this.buckets[index].nextNode === null) {
       this.buckets[index] = null;
+      this.occupied++;
       return;
     }
 
@@ -111,6 +113,7 @@ class HashMap {
     while (tmp !== null) {
       if (tmp.key === key) {
         prevNode.nextNode = tmp.nextNode || null;
+        this.occupied--;
         return;
       }
       prevNode = tmp;
@@ -118,7 +121,9 @@ class HashMap {
     }
   }
 
-  length() {}
+  length() {
+    return this.occupied
+  }
 
   clear() {}
 

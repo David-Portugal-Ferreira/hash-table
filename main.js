@@ -18,3 +18,4 @@ test.set("lion", "golden");
 // console.log(test.get("lion"))
 console.log(test.remove("hat"))
 console.log(test.buckets)
+console.log(test.length())
