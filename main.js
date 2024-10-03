@@ -1,7 +1,7 @@
 const HashMap = require("./hashMap");
 const HashSet = require("./hashSet")
 
-const test = new HashMap();
+/* const test = new HashMap();
 
 test.set("apple", "red");
 test.set("banana", "yellow");
@@ -33,11 +33,11 @@ console.log(test.values())
 console.log(test.entries())
 test.clear();
 console.log(test.buckets);
+ */
 
+let test = new HashSet();
 
-// let test = new HashSet();
-
-/* test.set("apple");
+test.set("apple");
 test.set("banana");
 test.set("carrot");
 test.set("dog");
@@ -49,6 +49,10 @@ test.set("ice cream");
 test.set("jacket");
 test.set("kite");
 test.set("lion");
-console.log(test.keys())
-test.set("moon");
-console.log(test.buckets) */
+// test.set("god");
+// console.log(test.keys())
+console.log(test.length())
+// test.set("moon");
+test.remove("lion")
+console.log(test.buckets)
+console.log(test.length())
