@@ -77,6 +77,10 @@ class HashSet {
   length() {
     return this.occupied;
   }
+
+  clear() {
+    this.buckets = Array(16).fill(null);
+  }
 }
 
 
