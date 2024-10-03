@@ -26,8 +26,8 @@ class HashMap {
   }
 
   set(key, value) {
-    if(this.occupied / this.capacity >= this.loadFactor) {
-        this.resize();
+    if (this.occupied / this.capacity >= this.loadFactor) {
+      this.resize();
     }
 
     let index = this.hash(key);
@@ -35,9 +35,22 @@ class HashMap {
       throw new Error("Trying to access index out of bound");
     }
 
+    let hasKey = this.has(key);
+    if (hasKey) {
+      let node = this.buckets[index];
+
+      while (node !== null) {
+        if (node.key === key) {
+          node.value = value;
+          return
+        }
+        node = node.nextNode;
+      }
+    }
+
     if (this.buckets[index] === null) {
-        this.buckets[index] = new Node(key, value);
-        return
+      this.buckets[index] = new Node(key, value);
+      return;
     }
 
     let tmp = this.buckets[index];
@@ -53,19 +66,18 @@ class HashMap {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
     }
-    // return this.buckets[index] || null;
 
-    let tmp = this.buckets[index] || null
+    let tmp = this.buckets[index] || null;
 
     while (tmp !== null) {
-        if(tmp.key === key) {
-            return tmp.value
-        }
-        tmp = tmp.nextNode;
+      if (tmp.key === key) {
+        return tmp.value;
+      }
+      tmp = tmp.nextNode;
     }
 
-    if(tmp === null) {
-        return "No such key in the hashmap"
+    if (tmp === null) {
+      return "No such key in the hashmap";
     }
   }
 
@@ -86,25 +98,24 @@ class HashMap {
 
     let hasKey = this.has(key);
     if (!hasKey) {
-        return "The key to be removed, does not exists";
+      return "The key to be removed, does not exists";
     }
 
-    if(this.buckets[index].nextNode === null) {
-        this.buckets[index] = null;
-        return
+    if (this.buckets[index].nextNode === null) {
+      this.buckets[index] = null;
+      return;
     }
-    
+
     let tmp = this.buckets[index].nextNode;
     let prevNode = this.buckets[index];
-    while(tmp !== null) {
-        if(tmp.key === key) {
-            prevNode.nextNode = tmp.nextNode || null;
-            return
-        }
-        prevNode = tmp;
-        tmp = tmp.nextNode;
+    while (tmp !== null) {
+      if (tmp.key === key) {
+        prevNode.nextNode = tmp.nextNode || null;
+        return;
+      }
+      prevNode = tmp;
+      tmp = tmp.nextNode;
     }
-
   }
 
   length() {}
@@ -117,31 +128,26 @@ class HashMap {
 
   entries() {}
 
-
-
-
-
-
   resize() {
     this.capacity *= 2;
-    
+
     let oldBucket = this.buckets;
     this.buckets = Array(this.capacity).fill(null);
 
     oldBucket.forEach((bucket, index) => {
-        // console.log(bucket)
-        if(bucket === null) {
-            this.buckets[index] = null;
-            return
-        } else {
-            this.set(bucket.key, bucket.value);
-        }
+      // console.log(bucket)
+      if (bucket === null) {
+        this.buckets[index] = null;
+        return;
+      } else {
+        this.set(bucket.key, bucket.value);
+      }
 
-        while (bucket.nextNode !== null) {
-            this.set(bucket.nextNode.key, bucket.nextNode.value);
-            bucket = bucket.nextNode;
-        }
-    })
+      while (bucket.nextNode !== null) {
+        this.set(bucket.nextNode.key, bucket.nextNode.value);
+        bucket = bucket.nextNode;
+      }
+    });
   }
 }
 
